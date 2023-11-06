@@ -6,6 +6,7 @@ package com.prodemy.boot.demo.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ import com.prodemy.boot.demo.repository.UserRepository;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired private UserRepository repo;
+	@Autowired PasswordEncoder encoder;
 	
 	@PostMapping("/register")
 	public HttpResponseModel<UserDto> register(@RequestBody RegistrationRequest req) {
@@ -38,7 +40,7 @@ public class UserController {
 					.email(req.getEmail())
 					.firstName(req.getFirstName())
 					.lastName(req.getLastName())
-					.password(req.getPassword())
+					.password(encoder.encode(req.getPassword()))
 					.build());
 			
 			UserDto resp = UserDto.builder()
