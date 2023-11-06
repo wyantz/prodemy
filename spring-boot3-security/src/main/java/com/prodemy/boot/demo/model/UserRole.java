@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "USERROLE")
+@Table(name = "userrole")
 public class UserRole {
 	@Column("EMAIL")
 	private String userId;
