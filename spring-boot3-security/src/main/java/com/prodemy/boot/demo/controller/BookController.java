@@ -19,6 +19,7 @@ import com.prodemy.boot.demo.model.request.AddBookRequest;
 import com.prodemy.boot.demo.model.response.HttpResponseModel;
 import com.prodemy.boot.demo.repository.BookRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.security.PermitAll;
 
 /**
@@ -31,6 +32,7 @@ import jakarta.annotation.security.PermitAll;
 public class BookController {
 	@Autowired private BookRepository repo;
 	
+	@Operation(summary = "Add new book", description = "Adding new book")
 	@PostMapping
 	public HttpResponseModel<Book> addBook(@RequestBody AddBookRequest req) {
 		HttpResponseModel<Book> resp = new HttpResponseModel<>();
@@ -47,6 +49,7 @@ public class BookController {
 		return resp;
 	}
 	
+	@Operation(summary = "List all books", description = "Get the list of all books")
 	@PermitAll
 	@GetMapping
 	public HttpResponseModel<Iterable<Book>> findAll() {
@@ -57,7 +60,8 @@ public class BookController {
 		
 		return resp;
 	}
-	
+
+	@Operation(summary = "Get book by id", description = "Get book by its identifier (id)")
 	@GetMapping(value = "/{id}")
 	public HttpResponseModel<Book> findBook(@PathVariable("id") Integer id) {
 		HttpResponseModel<Book> resp = new HttpResponseModel<>();
@@ -74,6 +78,7 @@ public class BookController {
 		return resp;
 	}
 
+	@Operation(summary = "Update book", description = "Modify or update the book")
 	@PutMapping
 	public HttpResponseModel<Book> updateBook(@RequestBody Book req) {
 		HttpResponseModel<Book> resp = new HttpResponseModel<>();

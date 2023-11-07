@@ -50,7 +50,7 @@ public class MyExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<HttpResponseModel> userAlreadyExistsException(Exception ex) {
 		
 		HttpResponseModel<Object> model = new HttpResponseModel<Object>();
-		model.setStatus(-999); // Sesuaikan kode status disini tergantung error atau exceptionnya apa
+		model.setStatus(4001); // Sesuaikan kode status disini tergantung error atau exceptionnya apa
 		model.setMessage(ex.getMessage()); // Sesuaikan messagenya, disini sebagai contoh menggambil message dari exception
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(model);

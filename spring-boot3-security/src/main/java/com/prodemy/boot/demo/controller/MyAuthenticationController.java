@@ -21,6 +21,10 @@ import com.prodemy.boot.demo.model.request.JwtRequest;
 import com.prodemy.boot.demo.model.response.HttpResponseModel;
 import com.prodemy.boot.demo.model.response.JwtResponse;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 /**
  * @author Awiyanto Ajisasongko
  *
@@ -38,6 +42,11 @@ public class MyAuthenticationController {
 	@Autowired
 	private MyUserDetailsService userDetailsService;
 
+	@Operation(summary = "Login", description = "Login using registered email and password")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Successfull login will get token, and the token must be included in every request for authorization"),
+			@ApiResponse(responseCode = "401", description = "Login failed")
+	})
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public HttpResponseModel<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		HttpResponseModel<JwtResponse> result = new HttpResponseModel<JwtResponse>();

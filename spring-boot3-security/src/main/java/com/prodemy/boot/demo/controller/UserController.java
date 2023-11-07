@@ -19,6 +19,10 @@ import com.prodemy.boot.demo.model.request.RegistrationRequest;
 import com.prodemy.boot.demo.model.response.HttpResponseModel;
 import com.prodemy.boot.demo.repository.UserRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 /**
  * @author Awiyanto Ajisasongko
  *
@@ -30,6 +34,11 @@ public class UserController {
 	@Autowired private UserRepository repo;
 	@Autowired PasswordEncoder encoder;
 	
+	@Operation(summary = "Register new user", description = "Registering for new user")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Successfull registration"),
+			@ApiResponse(responseCode = "400", description = "Status code 4001 in the response means registration failed")
+	})
 	@PostMapping("/register")
 	public HttpResponseModel<UserDto> register(@RequestBody RegistrationRequest req) {
 		HttpResponseModel<UserDto> result = new HttpResponseModel<UserDto>();
