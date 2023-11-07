@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.prodemy.boot.demo.model.request;
+package com.prodemy.boot.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,15 +11,16 @@ import lombok.NoArgsConstructor;
 /**
  * @author Awiyanto Ajisasongko
  *
- * Feb 7, 2023
+ * Nov 7, 2023
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddBookRequest {
+public class BookDto {
+	private Integer id;
 	private String title;
 	private String author;
 	private String isbn;
-	private Integer publisherId;
+	private String publisher;
 }
